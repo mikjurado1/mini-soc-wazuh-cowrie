@@ -1,3 +1,5 @@
+---
+
 ## 🔔 Reglas personalizadas en Wazuh
 Archivo de ejemplo: [`config/local_rules.xml`](config/local_rules.xml)
 
@@ -32,3 +34,4 @@ Archivo de ejemplo: [`config/local_rules.xml`](config/local_rules.xml)
 > sudo systemctl restart wazuh-manager
 > ```
 
+---
