@@ -1,0 +1,18 @@
+Añadir la recolección de logs de Cowrie:
+```xml
+<!-- /var/ossec/etc/ossec.conf (dentro de <ossec_config>) -->
+<localfile>
+  <log_format>json</log_format>
+  <location>/var/log/cowrie/cowrie.json</location>
+</localfile>
+<localfile>
+  <log_format>syslog</log_format>
+  <location>/var/log/cowrie/cowrie.log</location>
+</localfile>
+```
+
+Registrar el agente contra el Manager:
+```bash
+sudo /var/ossec/bin/agent-auth -m 192.168.229.133 -p 1515
+sudo systemctl enable --now wazuh-agent
+```
