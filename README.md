@@ -124,7 +124,7 @@ Archivo de ejemplo: [`config/local_rules.xml`](config/local_rules.xml)
 </group>
 ```
 
-> Copia este archivo a `/var/ossec/etc/rules/local_rules.xml` en el **Manager** y reinicia:
+> Copiar este archivo a `/var/ossec/etc/rules/local_rules.xml` en el **Manager** y reinicia:
 > ```bash
 > sudo systemctl restart wazuh-manager
 > ```
