@@ -150,7 +150,7 @@ Más ejemplos en [`docs/dashboards.md`](docs/dashboards.md).
 ---
 
 ## 🧪 Muestras
-- [`samples/hydra_command.txt`](samples/hydra_command.txt)
+- [`samples/hydra_command.md`](samples/hydra_command.md)
 - [`samples/cowrie.login.failed.json`](samples/cowrie.login.failed.json)
 
 ---
