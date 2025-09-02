@@ -15,8 +15,9 @@ agent.name: "honeypot"
 ```
 data.eventid: "cowrie.login.failed"
 ```
-<img width="1913" height="920" alt="image" src="https://github.com/user-attachments/assets/1ea04e77-197f-4327-aa40-14b1e87a1760" />
+<img width="1919" height="919" alt="image" src="https://github.com/user-attachments/assets/cf4a7ed1-fa54-4c4c-a5ce-63fb149d8677" />
 
+<img width="1918" height="572" alt="image" src="https://github.com/user-attachments/assets/35f020ba-4a89-4311-8afd-af7a24d8336c" />
 
 ## Comandos ejecutados en sesión (Cowrie)
 ```
@@ -27,7 +28,6 @@ data.eventid: "cowrie.command.input"
 ```
 data.eventid: "cowrie.login.success"
 ```
-<img width="1919" height="918" alt="image" src="https://github.com/user-attachments/assets/01524067-274d-4e35-895b-229e265ea520" />
+<img width="1919" height="912" alt="image" src="https://github.com/user-attachments/assets/4cbf8eba-1594-4637-96b1-6aa3d6ebcb56" />
 
-<img width="1910" height="872" alt="image" src="https://github.com/user-attachments/assets/8dfa9d23-4cf7-4c20-a27a-e45e033ed49a" />
-
+<img width="1916" height="822" alt="image" src="https://github.com/user-attachments/assets/38be6fb9-6fbd-46bf-aa31-fd9268cc4554" />
