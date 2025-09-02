@@ -1,0 +1,36 @@
+# Archivos de entorno / secretos
+.env
+*.key
+*.crt
+*.pem
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+wazuh-logs/
+cowrie-logs/
+
+# Archivos temporales
+*.tmp
+*.swp
+*.bak
+
+# Directorios virtualenv / Python
+venv/
+__pycache__/
+*.pyc
+
+# Salidas y dumps
+*.out
+*.gz
+*.zip
+*.tar
+*.tar.gz
+
+# Configuraciones locales
+*.local
+*.conf.local
