@@ -203,7 +203,7 @@ mini-soc-wazuh-cowrie/
 │   ├── local_rules.xml
 │   └── ossec.cowrie.sample.xml
 ├── dashboards/
-│   ├── cowrie_failed_login.search.ndjson
+│   ├── cowrie_failed_logins.search.ndjson
 │   └── cowrie_success_logins.search.ndjson
 ├── docs/
 │   ├── architecture.mmd
