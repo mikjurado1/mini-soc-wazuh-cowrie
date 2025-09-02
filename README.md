@@ -44,6 +44,7 @@ flowchart LR
 
 > ⚠️ Nota: estas versiones fueron las probadas en el laboratorio.  
 > Otras versiones más recientes pueden requerir ajustes menores en configuración o dependencias.
+Para detalles de instalación exacta → [docs/versions.md](docs/versions.md)
 
 ---
 
