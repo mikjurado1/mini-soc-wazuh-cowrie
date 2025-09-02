@@ -47,3 +47,174 @@ Validar que el honeypot Cowrie genera eventos que el agente Wazuh recoge, decodi
 
    ```bash
    hydra -l root -P /usr/share/wordlists/rockyou.txt -s 2222 ssh://<IP_HONEYPOT> -t 4 -f
+
+Verifica eventos en Wazuh:
+
+Saved search importada: Cowrie Failed Logins.
+
+Filtro de referencia:
+
+agent.name:"honeypot" AND data.eventid:"cowrie.login.failed"
+
+
+Esperado:
+
+Alerta con rule.id=100200.
+
+Mensaje similar a: login attempt failed.
+
+En detalles de la alerta: mapeo MITRE T1110 (Brute Force).
+
+Evidencia:
+
+Captura del listado de eventos (saved search).
+
+Captura del detalle de una alerta (panel lateral) mostrando rule.id, data.eventid, usuario/IP origen y MITRE.
+
+T2 — Acceso válido (login success)
+
+Propósito: Disparar cowrie.login.success y validar la Regla 100201 (MITRE T1078).
+
+Desde un host externo, intenta sesión SSH contra Cowrie:
+
+ssh -p 2222 root@<IP_HONEYPOT>
+# introduce alguna contraseña (p. ej. monkey)
+# sal de la sesión con 'exit'
+
+
+Cowrie puede aceptar credenciales según su configuración; el objetivo es generar el evento de éxito.
+
+Verifica eventos:
+
+Saved search importada: Cowrie Success Logins.
+
+Filtro de referencia:
+
+agent.name:"honeypot" AND data.eventid:"cowrie.login.success"
+
+
+Esperado:
+
+Alerta con rule.id=100201.
+
+En detalles: MITRE T1078 (Valid Accounts).
+
+Evidencia:
+
+Captura del listado de eventos.
+
+Captura del detalle con rule.id y MITRE.
+
+(Opcional) T3 — Comandos dentro de sesión
+
+Propósito: Registrar cowrie.command.input (y correlacionar si existe regla).
+
+Abre sesión SSH como en T2 y ejecuta:
+
+uname -a
+whoami
+cat /etc/passwd
+exit
+
+
+Filtro:
+
+agent.name:"honeypot" AND data.eventid:"cowrie.command.input"
+
+
+Esperado:
+
+Eventos con el comando en el campo correspondiente (p. ej. data.command).
+
+(Si hay regla local) alerta con severidad definida y mapeo MITRE según el comando.
+
+Evidencia: capturas de resultados.
+
+(Opcional) T4 — Conexión de sesión
+
+Propósito: Registrar cowrie.session.connect.
+
+Intenta una conexión SSH y cuélgala (o inicia y sal rápido):
+
+ssh -p 2222 root@<IP_HONEYPOT> "exit" || true
+
+
+Filtro:
+
+agent.name:"honeypot" AND data.eventid:"cowrie.session.connect"
+
+
+Esperado: evento de conexión con IP origen.
+
+Evidencia: captura.
+
+Verificación adicional (host honeypot)
+
+Asegúrate de que Cowrie está escribiendo JSON:
+
+sudo tail -n 50 /var/log/cowrie/cowrie.json
+
+
+Si el agente Wazuh lee el archivo correcto, deberían aparecer líneas nuevas al generar eventos.
+
+Criterios de aceptación (Pass/Fail)
+
+PASS si:
+
+T1: se observan alertas con rule.id=100200 para fallos de login, con MITRE T1110.
+
+T2: se observan alertas con rule.id=100201 para logins exitosos, con MITRE T1078.
+
+Los saved searches importados devuelven resultados coherentes con los ataques.
+
+Opcional: evidencias para T3/T4 si esas reglas se añaden.
+
+FAIL si cualquiera de las condiciones anteriores no se cumple o no hay eventos/alertas tras ejecutar los pasos.
+
+Evidencias a adjuntar en docs/img/
+
+search_failed_logins.png — listado y filtro.
+
+alert_failed_login_detail.png — detalle alerta 100200.
+
+search_success_logins.png — listado y filtro.
+
+alert_success_login_detail.png — detalle alerta 100201.
+
+(Opcional) command_input_list.png, session_connect_list.png.
+
+Troubleshooting rápido
+
+No llegan eventos:
+
+Verifica que el agente está conectado al manager (/var/ossec/logs/ossec.log).
+
+Revisa puertos 1514/1515 TCP/UDP entre agente y manager.
+
+Asegura <localfile> apuntando a cowrie.json y formato json.
+
+No se aplican reglas:
+
+Confirma carga de local_rules.xml (sin errores de sintaxis).
+
+Reinicia el manager y el agente tras cambios de config.
+
+Saved searches vacías:
+
+Confirma que importaste los .ndjson.
+
+Ajusta el timepicker al rango donde generaste los ataques.
+
+Revisa el campo agent.name (usa el nombre real del agente).
+
+Anexo — Comandos de referencia
+
+Hydra (rápido, diccionario pequeño):
+
+printf "123456\npassword\nmonkey\nletmein\n" > pass.txt
+hydra -l root -P pass.txt -s 2222 ssh://<IP_HONEYPOT> -t 4 -f
+
+
+SSH directo:
+
+ssh -p 2222 root@<IP_HONEYPOT>
