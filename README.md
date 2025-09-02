@@ -199,6 +199,9 @@ Más ejemplos en [`docs/dashboards.md`](docs/dashboards.md).
 ```
 mini-soc-wazuh-cowrie/
 ├── README.md
+├── LICENSE
+├── .gitignore
+├── .env.example
 ├── config/
 │   ├── local_rules.xml
 │   └── ossec.cowrie.sample.xml
