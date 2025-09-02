@@ -206,6 +206,10 @@ mini-soc-wazuh-cowrie/
 │   ├── cowrie_failed_logins.search.ndjson
 │   └── cowrie_success_logins.search.ndjson
 ├── docs/
+│   ├── img/
+│   │ ├── dashboard_overview.md
+│   │ ├── search_failed_logins.md
+│   │ ├── search_success_logins.md
 │   ├── architecture.mmd
 │   └── dashboards.md
 ├── samples/
