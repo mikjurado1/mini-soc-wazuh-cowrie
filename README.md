@@ -217,6 +217,8 @@ mini-soc-wazuh-cowrie/
 │   ├── hydra_command.md
 │   └── cowrie.login.failed.json
 ├── scripts/
+│   ├── setup_honeypot.sh
+│   └── setup_manager.sh
 ```
 
 ---
