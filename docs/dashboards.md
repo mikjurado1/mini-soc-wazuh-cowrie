@@ -4,9 +4,10 @@
 ```
 agent.name: "honeypot"
 ```
-<img width="1919" height="834" alt="image" src="https://github.com/user-attachments/assets/ab6dd500-8c38-41cb-a419-02b4b5cb4d28" />
+<img width="1919" height="918" alt="image" src="https://github.com/user-attachments/assets/7f5253cb-5825-4d8e-afe1-ab9531eff67b" />
 
-<img width="1903" height="656" alt="image" src="https://github.com/user-attachments/assets/e673dc56-1760-4a65-bcea-69b588f82a1c" />
+<img width="1907" height="827" alt="image" src="https://github.com/user-attachments/assets/1cd97555-9953-49f2-957b-8a0145e78fbc" />
+
 
 
 
