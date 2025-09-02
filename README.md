@@ -4,6 +4,7 @@
 ![Status](https://img.shields.io/badge/Status-In%20Progress-blue)
 ![GitHub last commit](https://img.shields.io/github/last-commit/mikjurado1/mini-soc-wazuh-cowrie)
 ![GitHub repo size](https://img.shields.io/github/repo-size/mikjurado1/mini-soc-wazuh-cowrie)
+[![Release](https://img.shields.io/github/v/release/mikjurado1/mini-soc-wazuh-cowrie?sort=semver)](https://github.com/mikjurado1/mini-soc-wazuh-cowrie/releases)
 
 
 Proyecto de laboratorio para aprender y demostrar habilidades de **detección**, **recolección de logs** y **análisis** en un mini‑SOC casero usando **Wazuh SIEM** y el **honeypot Cowrie**. Incluye guía para reproducir el entorno, reglas personalizadas de Wazuh y ejemplos de ataques.
