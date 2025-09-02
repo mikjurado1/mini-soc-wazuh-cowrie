@@ -30,6 +30,23 @@ flowchart LR
 ```
 ---
 
+## Versiones utilizadas
+## Versiones utilizadas
+
+| Componente         | Versión / Build      | Notas                                   |
+|--------------------|----------------------|-----------------------------------------|
+| **Wazuh Manager**  | 4.8.2-1              | Instalado en Ubuntu Server 22.04 LTS    |
+| **Wazuh Agent**    | 4.8.2-1              | Instalado en Cowrie VM                  |
+| **Cowrie Honeypot**| 2.5.0 (GitHub HEAD)  | Instalado en Debian 11                  |
+| **Sistema Operativo Manager** | Ubuntu Server 22.04 LTS | VM en VMware Workstation             |
+| **Sistema Operativo Honeypot**| Debian 11 Bullseye      | VM en VMware Workstation                |
+| **Herramienta de ataque** | Hydra 9.4           | Usado para pruebas de fuerza bruta SSH  |
+
+> ⚠️ Nota: estas versiones fueron las probadas en el laboratorio.  
+> Otras versiones más recientes pueden requerir ajustes menores en configuración o dependencias.
+
+---
+
 ## 📦 Requisitos
 - 1 VM con **Wazuh Manager** (ej.: `192.168.229.133`)
 - 1 VM **honeypot** con **Cowrie** y **wazuh‑agent** (ej.: `192.168.229.134`)
