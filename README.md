@@ -53,6 +53,13 @@ Para detalles de instalación exacta → [docs/versions.md](docs/versions.md)
 - 1 VM **Kali** para pruebas de ataque
 - Red interna que permita comunicación entre VMs
 
+⚙️ Variables de entorno  
+Este proyecto utiliza un archivo `.env` para configurar IPs, puertos y credenciales de ejemplo.  
+
+1. Copiar el archivo `.env.example` a `.env`  
+2. Ajusta los valores según tu entorno  
+
+
 ---
 
 ## ⚙️ Pasos de instalación (resumen)
