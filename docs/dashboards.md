@@ -13,10 +13,9 @@ agent.name: "honeypot"
 ## Intentos de login fallidos (Cowrie)
 ```
 data.eventid: "cowrie.login.failed"
-
-
-
 ```
+<img width="1913" height="920" alt="image" src="https://github.com/user-attachments/assets/1ea04e77-197f-4327-aa40-14b1e87a1760" />
+
 
 ## Comandos ejecutados en sesión (Cowrie)
 ```
