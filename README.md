@@ -117,6 +117,7 @@ sudo systemctl enable --now wazuh-agent
   # mete cualquier password falsa
   ```
 - En **Wazuh Dashboard** (Manager): ir a **Threat Hunting** y filtrar por `agent.name: "honeypot"`.
+- ✅ **Plan de pruebas reproducible:** ver [docs/test-plan.md](docs/test-plan.md)
 
 ---
 
