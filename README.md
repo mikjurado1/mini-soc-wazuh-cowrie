@@ -207,7 +207,7 @@ mini-soc-wazuh-cowrie/
 │   ├── architecture.mmd
 │   └── dashboards.md
 ├── samples/
-│   ├── hydra_command.txt
+│   ├── hydra_command.md
 │   └── cowrie.login.failed.json
 ├── scripts/
 ```
