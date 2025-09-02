@@ -13,7 +13,7 @@ agent.name: "honeypot"
 ## Intentos de login fallidos (Cowrie)
 ```
 data.eventid: "cowrie.login.failed"
-<img width="1919" height="842" alt="image" src="https://github.com/user-attachments/assets/5f82df2c-3cda-4493-82e2-0b3ee83defa2" />
+
 
 
 ```
@@ -27,3 +27,7 @@ data.eventid: "cowrie.command.input"
 ```
 data.eventid: "cowrie.login.success"
 ```
+<img width="1919" height="918" alt="image" src="https://github.com/user-attachments/assets/01524067-274d-4e35-895b-229e265ea520" />
+
+<img width="1910" height="872" alt="image" src="https://github.com/user-attachments/assets/8dfa9d23-4cf7-4c20-a27a-e45e033ed49a" />
+
