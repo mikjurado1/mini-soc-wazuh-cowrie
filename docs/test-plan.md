@@ -75,140 +75,132 @@ ssh -p 2222 root@<IP_HONEYPOT>
 # introduce alguna contraseña (p. ej. monkey)
 # sal de la sesión con 'exit'
 ```
+> Cowrie puede aceptar credenciales según su configuración; el objetivo es generar el evento de éxito.
 
-Cowrie puede aceptar credenciales según su configuración; el objetivo es generar el evento de éxito.
-
-Verifica eventos:
-
-Saved search importada: Cowrie Success Logins.
-
-Filtro de referencia:
-
+2. Verifica eventos:
+   - Saved search importada: Cowrie Success Logins.
+   - Filtro de referencia:
+```
 agent.name:"honeypot" AND data.eventid:"cowrie.login.success"
+```
 
+3. Esperado:
+   - Alerta con `rule.id=100201`.
+   - En detalles: **MITRE T1078 (Valid Accounts).**
 
-Esperado:
-
-Alerta con rule.id=100201.
-
-En detalles: MITRE T1078 (Valid Accounts).
-
-Evidencia:
-
-Captura del listado de eventos.
-
-Captura del detalle con rule.id y MITRE.
+4. Evidencia:
+   - Captura del listado de eventos.
+   - Captura del detalle con `rule.id` y **MITRE**.
 
 (Opcional) T3 — Comandos dentro de sesión
 
-Propósito: Registrar cowrie.command.input (y correlacionar si existe regla).
+**Propósito:** Registrar `cowrie.command.input` (y correlacionar si existe regla).
 
-Abre sesión SSH como en T2 y ejecuta:
-
+1. Abre sesión SSH como en T2 y ejecuta:
+```
 uname -a
 whoami
 cat /etc/passwd
 exit
+```
 
-
-Filtro:
-
+2. Filtro:
+```
 agent.name:"honeypot" AND data.eventid:"cowrie.command.input"
+```
 
+3. Esperado:
+   - Eventos con el comando en el campo correspondiente (p. ej. `data.command`).
+   - (Si hay regla local) alerta con severidad definida y mapeo MITRE según el comando.
 
-Esperado:
-
-Eventos con el comando en el campo correspondiente (p. ej. data.command).
-
-(Si hay regla local) alerta con severidad definida y mapeo MITRE según el comando.
-
-Evidencia: capturas de resultados.
+4. Evidencia: capturas de resultados.
 
 (Opcional) T4 — Conexión de sesión
 
-Propósito: Registrar cowrie.session.connect.
+Propósito: Registrar `cowrie.session.connect`.
 
-Intenta una conexión SSH y cuélgala (o inicia y sal rápido):
-
+1. Intenta una conexión SSH y cuélgala (o inicia y sal rápido):
+```
 ssh -p 2222 root@<IP_HONEYPOT> "exit" || true
+```
 
-
-Filtro:
-
+2. Filtro:
+```
 agent.name:"honeypot" AND data.eventid:"cowrie.session.connect"
+```
 
+3. Esperado: evento de conexión con IP origen.
 
-Esperado: evento de conexión con IP origen.
-
-Evidencia: captura.
+4. Evidencia: captura.
 
 Verificación adicional (host honeypot)
 
-Asegúrate de que Cowrie está escribiendo JSON:
-
+- Asegúrate de que Cowrie está escribiendo JSON:
+```
 sudo tail -n 50 /var/log/cowrie/cowrie.json
+```
 
-
-Si el agente Wazuh lee el archivo correcto, deberían aparecer líneas nuevas al generar eventos.
+- Si el agente Wazuh lee el archivo correcto, deberían aparecer líneas nuevas al generar eventos.
 
 Criterios de aceptación (Pass/Fail)
 
-PASS si:
+- PASS si:
 
-T1: se observan alertas con rule.id=100200 para fallos de login, con MITRE T1110.
+   - T1: se observan alertas con rule.id=100200 para fallos de login, con MITRE T1110.
 
-T2: se observan alertas con rule.id=100201 para logins exitosos, con MITRE T1078.
+   - T2: se observan alertas con rule.id=100201 para logins exitosos, con MITRE T1078.
 
-Los saved searches importados devuelven resultados coherentes con los ataques.
+   - Los saved searches importados devuelven resultados coherentes con los ataques.
 
-Opcional: evidencias para T3/T4 si esas reglas se añaden.
+ - Opcional: evidencias para T3/T4 si esas reglas se añaden.
 
-FAIL si cualquiera de las condiciones anteriores no se cumple o no hay eventos/alertas tras ejecutar los pasos.
+ - FAIL si cualquiera de las condiciones anteriores no se cumple o no hay eventos/alertas tras ejecutar los pasos.
 
 Evidencias a adjuntar en docs/img/
 
-search_failed_logins.png — listado y filtro.
+- `search_failed_logins.png` — listado y filtro.
 
-alert_failed_login_detail.png — detalle alerta 100200.
+- `alert_failed_login_detail.png` — detalle alerta 100200.
 
-search_success_logins.png — listado y filtro.
+- `search_success_logins.png` — listado y filtro.
 
-alert_success_login_detail.png — detalle alerta 100201.
+- `alert_success_login_detail.png` — detalle alerta 100201.
 
-(Opcional) command_input_list.png, session_connect_list.png.
+- (Opcional) `command_input_list.png`, `session_connect_list.png`.
 
 Troubleshooting rápido
 
-No llegan eventos:
+- No llegan eventos:
 
-Verifica que el agente está conectado al manager (/var/ossec/logs/ossec.log).
+  - Verifica que el agente está conectado al manager (`/var/ossec/logs/ossec.log`).
 
-Revisa puertos 1514/1515 TCP/UDP entre agente y manager.
+  - Revisa puertos 1514/1515 TCP/UDP entre agente y manager.
 
-Asegura <localfile> apuntando a cowrie.json y formato json.
+  - Asegura `<localfile>` apuntando a `cowrie.json` y formato `json`.
 
-No se aplican reglas:
+- No se aplican reglas:
 
-Confirma carga de local_rules.xml (sin errores de sintaxis).
+  - Confirma carga de `local_rules.xml` (sin errores de sintaxis).
 
-Reinicia el manager y el agente tras cambios de config.
+  - Reinicia el manager y el agente tras cambios de config.
 
-Saved searches vacías:
+- Saved searches vacías:
 
-Confirma que importaste los .ndjson.
+   - Confirma que importaste los .ndjson.
 
-Ajusta el timepicker al rango donde generaste los ataques.
+   - Ajusta el timepicker al rango donde generaste los ataques.
 
-Revisa el campo agent.name (usa el nombre real del agente).
+   - Revisa el campo agent.name (usa el nombre real del agente).
 
 Anexo — Comandos de referencia
 
-Hydra (rápido, diccionario pequeño):
-
+- Hydra (rápido, diccionario pequeño):
+```
 printf "123456\npassword\nmonkey\nletmein\n" > pass.txt
 hydra -l root -P pass.txt -s 2222 ssh://<IP_HONEYPOT> -t 4 -f
+```
 
-
-SSH directo:
-
+- SSH directo:
+```
 ssh -p 2222 root@<IP_HONEYPOT>
+```
