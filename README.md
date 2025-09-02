@@ -210,8 +210,9 @@ mini-soc-wazuh-cowrie/
 │   │ ├── dashboard_overview.md
 │   │ ├── search_failed_logins.md
 │   │ ├── search_success_logins.md
-│   ├── architecture.mmd
-│   └── dashboards.md
+│   ├── architecture.md
+│   ├── dashboards.md
+│   └── versions.md
 ├── samples/
 │   ├── hydra_command.md
 │   └── cowrie.login.failed.json
