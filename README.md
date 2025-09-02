@@ -218,6 +218,7 @@ mini-soc-wazuh-cowrie/
 │   │ ├── search_success_logins.md
 │   ├── architecture.md
 │   ├── dashboards.md
+│   ├── test-plan.md
 │   └── versions.md
 ├── samples/
 │   ├── hydra_command.md
