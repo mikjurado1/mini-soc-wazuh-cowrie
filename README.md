@@ -202,13 +202,14 @@ mini-soc-wazuh-cowrie/
 ├── config/
 │   ├── local_rules.xml
 │   └── ossec.cowrie.sample.xml
+├── dashboards/
 ├── docs/
 │   ├── architecture.mmd
 │   └── dashboards.md
 ├── samples/
 │   ├── hydra_command.txt
 │   └── cowrie.login.failed.json
-
+├── scripts/
 ```
 
 ---
