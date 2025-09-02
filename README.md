@@ -201,6 +201,7 @@ Más ejemplos en [`docs/dashboards.md`](docs/dashboards.md).
 ```
 mini-soc-wazuh-cowrie/
 ├── README.md
+├── CHANGELOG.md
 ├── LICENSE
 ├── .gitignore
 ├── .env.example
