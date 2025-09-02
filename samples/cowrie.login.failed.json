@@ -1,1 +1,42 @@
-
+{
+  "agent": {
+    "ip": "192.168.229.134",
+    "name": "honeypot",
+    "id": "002"
+  },
+  "manager": {
+    "name": "wazuh-manager"
+  },
+  "data": {
+    "src_ip": "192.168.229.128",
+    "eventid": "cowrie.login.failed",
+    "password": "123456",
+    "session": "546e914ac97f",
+    "sensor": "honeypot",
+    "message": "login attempt [root/123456] failed",
+    "username": "root",
+    "timestamp": "2025-09-01T22:01:45.804758Z"
+  },
+  "rule": {
+    "firedtimes": 1,
+    "mail": false,
+    "level": 5,
+    "description": "Cowrie login failed (detected)",
+    "groups": [
+      "cowrie"
+    ],
+    "id": "100500"
+  },
+  "decoder": {
+    "name": "json"
+  },
+  "full_log": "{\"eventid\":\"cowrie.login.failed\",\"username\":\"root\",\"password\":\"123456\",\"message\":\"login attempt [root/123456] failed\",\"sensor\":\"honeypot\",\"timestamp\":\"2025-09-01T22:01:45.804758Z\",\"src_ip\":\"192.168.229.128\",\"session\":\"546e914ac97f\"}",
+  "input": {
+    "type": "log"
+  },
+  "@timestamp": "2025-09-01T22:01:46.191Z",
+  "location": "/var/log/cowrie/cowrie.json",
+  "id": "1756764106.121326",
+  "timestamp": "2025-09-01T22:01:46.191+0000",
+  "_id": "5GBMB5kBVdKK7va58sVe"
+}
