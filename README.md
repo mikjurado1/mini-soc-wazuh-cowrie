@@ -1,4 +1,10 @@
 # Mini‑SOC: Wazuh + Cowrie Honeypot (Lab)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Made with Love](https://img.shields.io/badge/Made%20with-%E2%9D%A4-red)
+![Status](https://img.shields.io/badge/Status-In%20Progress-blue)
+![GitHub last commit](https://img.shields.io/github/last-commit/mikjurado1/mini-soc-wazuh-cowrie)
+![GitHub repo size](https://img.shields.io/github/repo-size/mikjurado1/mini-soc-wazuh-cowrie)
+
 
 Proyecto de laboratorio para aprender y demostrar habilidades de **detección**, **recolección de logs** y **análisis** en un mini‑SOC casero usando **Wazuh SIEM** y el **honeypot Cowrie**. Incluye guía para reproducir el entorno, reglas personalizadas de Wazuh y ejemplos de ataques.
 
