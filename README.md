@@ -67,6 +67,16 @@ Este proyecto utiliza un archivo `.env` para configurar IPs, puertos y credencia
 - Instalar Cowrie (guía oficial) y dejarlo escuchando **SSH en `2222`** (por defecto de Cowrie).
 - Validar que el servicio arranca y genera claves (RSA/ECDSA/ED25519).
 
+## Instalación rápida
+
+1. Clona este repo
+2. Copia `.env.example` a `.env` y ajusta valores
+3. Ejecuta:
+   ```bash
+   sudo ./scripts/setup_manager.sh
+   sudo ./scripts/setup_honeypot.sh
+
+
 ### 2) Wazuh Agent (en el honeypot)
 Instalar la versión que coincida con tu Manager (ej.: 4.8.2‑1) y configurar el **servidor**:
 ```xml
