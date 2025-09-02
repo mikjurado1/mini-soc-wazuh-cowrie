@@ -47,40 +47,34 @@ Validar que el honeypot Cowrie genera eventos que el agente Wazuh recoge, decodi
 
    ```bash
    hydra -l root -P /usr/share/wordlists/rockyou.txt -s 2222 ssh://<IP_HONEYPOT> -t 4 -f
-
-Verifica eventos en Wazuh:
-
-Saved search importada: Cowrie Failed Logins.
-
-Filtro de referencia:
-
+   ```
+2. Verifica eventos en Wazuh:
+  - Saved search importada: Cowrie Failed Logins.
+  - Filtro de referencia:
+```
 agent.name:"honeypot" AND data.eventid:"cowrie.login.failed"
+```
 
+3. Esperado:
+   - Alerta con rule.id=100200.
+   - Mensaje similar a: login attempt failed.
+   - En detalles de la alerta: mapeo MITRE T1110 (Brute Force).
 
-Esperado:
-
-Alerta con rule.id=100200.
-
-Mensaje similar a: login attempt failed.
-
-En detalles de la alerta: mapeo MITRE T1110 (Brute Force).
-
-Evidencia:
-
-Captura del listado de eventos (saved search).
-
-Captura del detalle de una alerta (panel lateral) mostrando rule.id, data.eventid, usuario/IP origen y MITRE.
+4. Evidencia:
+   - Captura del listado de eventos (saved search).
+   - Captura del detalle de una alerta (panel lateral) mostrando rule.id, data.eventid, usuario/IP origen y MITRE.
 
 T2 — Acceso válido (login success)
 
-Propósito: Disparar cowrie.login.success y validar la Regla 100201 (MITRE T1078).
+Propósito: Disparar `cowrie.login.success` y validar la **Regla 100201 (MITRE T1078)**.
 
-Desde un host externo, intenta sesión SSH contra Cowrie:
+1. Desde un host externo, intenta sesión SSH contra Cowrie:
 
+```bash
 ssh -p 2222 root@<IP_HONEYPOT>
 # introduce alguna contraseña (p. ej. monkey)
 # sal de la sesión con 'exit'
-
+```
 
 Cowrie puede aceptar credenciales según su configuración; el objetivo es generar el evento de éxito.
 
