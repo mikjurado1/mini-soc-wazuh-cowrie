@@ -31,7 +31,6 @@ flowchart LR
 ---
 
 ## Versiones utilizadas
-## Versiones utilizadas
 
 | Componente         | Versión / Build      | Notas                                   |
 |--------------------|----------------------|-----------------------------------------|
