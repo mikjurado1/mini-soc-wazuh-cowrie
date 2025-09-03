@@ -234,6 +234,7 @@ mini-soc-wazuh-cowrie/
 │   │ ├── search_failed_logins.md
 │   │ ├── search_success_logins.md
 │   ├── architecture.md
+│   ├── architecture_v2.md
 │   ├── dashboards.md
 │   ├── test-plan.md
 │   └── versions.md
