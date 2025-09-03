@@ -80,7 +80,7 @@ Este proyecto utiliza un archivo `.env` para configurar IPs, puertos y credencia
 
 ---
 
-## ⚙️ Pasos de instalación (resumen)
+## ⚙️ Pasos de instalación Version 1 - Cowrie + Wazuh Agent (resumen)
 ### 1) Cowrie (en el honeypot)
 - Instalar Cowrie (guía oficial) y dejarlo escuchando **SSH en `2222`** (por defecto de Cowrie).
 - Validar que el servicio arranca y genera claves (RSA/ECDSA/ED25519).
@@ -136,6 +136,29 @@ sudo systemctl enable --now wazuh-agent
 - En **Wazuh Dashboard** (Manager): ir a **Threat Hunting** y filtrar por `agent.name: "honeypot"`.
 - ✅ **Plan de pruebas reproducible:** ver [docs/test-plan.md](docs/test-plan.md)
 
+---
+## ⚙️ Pasos de instalación Version 2 - Windows + Sysmon + Wazuh Agent (resumen)
+
+### 1) Instalar Wazuh Agent en Windows
+- Descarga el instalador MSI desde la [página oficial de Wazuh](https://documentation.wazuh.com/current/installation-guide/wazuh-agent/wazuh-agent-package.html#windows).  
+- Durante la instalación, especifica la IP del Manager (ejemplo `192.168.229.133`).  
+
+Configurar conexión al Manager en:
+```xml
+<!-- C:\Program Files (x86)\ossec-agent\ossec.conf -->
+<client>
+  <server>
+    <address><IP_WAZUH_MANAGER>:<PORT></address>
+    <port>1514</port>
+    <protocol>tcp</protocol>
+  </server>
+</client>
+
+2) Instalar y configurar Sysmon
+
+- Descarga Sysmon desde [Sysinternal](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon)
+
+Instálalo con un archivo de configuración (ejemplo: [SwiftOnSecurity config](https://github.com/SwiftOnSecurity/sysmon-config)):
 ---
 
 ## 🐍 Ataque de ejemplo con Hydra
