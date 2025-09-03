@@ -153,6 +153,7 @@ Configurar conexión al Manager en:
     <protocol>tcp</protocol>
   </server>
 </client>
+```
 
 2) Instalar y configurar Sysmon
 
