@@ -11,6 +11,17 @@ Proyecto de laboratorio para aprender y demostrar habilidades de **detección**,
 
 > Estado del autor: Funcionando con Wazuh Manager en `192.168.229.133` y honeypot Cowrie + wazuh‑agent en `192.168.229.134` (puerto SSH simulado `2222`).
 
+## 🚀 Versiones del Proyecto
+
+- **Versión 1** – Integración inicial de Cowrie Honeypot con Wazuh.
+  - Diagrama: [Arquitectura v1](./docs/architecture.md)
+  - Evidencias: [Login Cowrie detectado](./docs/img/cowrie_login.png)
+
+- **Versión 2** – Endpoint Windows con Sysmon + Wazuh Agent.
+  - Diagrama: [Arquitectura v2](./docs/architecture_v2.md)
+  - Evidencias: [Eventos de Windows y Sysmon](./docs/img/win10_sysmon.png)
+
+
 ---
 
 ## 🎯 Objetivos de aprendizaje
