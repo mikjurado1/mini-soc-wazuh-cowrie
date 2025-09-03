@@ -15,11 +15,11 @@ Proyecto de laboratorio para aprender y demostrar habilidades de **detección**,
 
 - **Versión 1** – Integración inicial de Cowrie Honeypot con Wazuh.
   - Diagrama: [Arquitectura v1](./docs/architecture.md)
-  - Evidencias: [Login Cowrie detectado](./docs/img/cowrie_login.png)
+  - Evidencias: [Login Cowrie detectado](./docs/img/search_success_logins.md)
 
 - **Versión 2** – Endpoint Windows con Sysmon + Wazuh Agent.
   - Diagrama: [Arquitectura v2](./docs/architecture_v2.md)
-  - Evidencias: [Eventos de Windows y Sysmon](./docs/img/win10_sysmon.png)
+  - Evidencias: [Eventos de Windows y Sysmon](./docs/img/win10_sysmon.md)
 
 
 ---
