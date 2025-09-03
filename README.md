@@ -207,6 +207,11 @@ Archivo de ejemplo: [`config/local_rules.xml`](config/local_rules.xml)
 Más ejemplos en [`docs/dashboards.md`](docs/dashboards.md).
 
 ---
+# Evidencias – Windows 10 + Sysmon
+
+- Evidencias V2: [Windows 10 + Sysmon](./docs/evidence_win10.md)
+
+---
 
 ## 🧪 Muestras
 - [`samples/hydra_command.md`](samples/hydra_command.md)
@@ -237,7 +242,16 @@ mini-soc-wazuh-cowrie/
 │   ├── architecture_v2.md
 │   ├── dashboards.md
 │   ├── test-plan.md
+│   ├── evidence_win10.md
 │   └── versions.md
+├── evidence/
+│   ├── cowrie/
+│   ├── win10/
+│   ├── agent_active.md
+│   ├── sysmon_process.md
+│   ├── sysmon_service.md
+│   ├── sysmon_logon_failed.md
+│   ├── sysmon_process.json
 ├── samples/
 │   ├── hydra_command.md
 │   └── cowrie.login.failed.json
