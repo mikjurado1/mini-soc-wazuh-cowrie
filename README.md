@@ -297,6 +297,9 @@ mini-soc-wazuh-cowrie/
 │   ├── local_rules.xml
 │   └── ossec.cowrie.sample.xml
 ├── dashboards/
+│   ├── ServiceStartupChange.ndjson
+│   ├── Sysmon_LogonFailure.ndjson
+│   ├── Sysmon_ProcessCreate.ndjson
 │   ├── cowrie_failed_logins.search.ndjson
 │   └── cowrie_success_logins.search.ndjson
 ├── docs/
