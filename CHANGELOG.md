@@ -1,5 +1,22 @@
 # Changelog
-Todas las novedades de este proyecto se documentan aquí.
+
+# 📜 CHANGELOG – Mini-SOC Wazuh + Cowrie + Sysmon
+
+## v0.2.0 – 2025-09-03
+- Añadido endpoint **Windows 10 (Win10-VM)** con **Sysmon + Wazuh Agent**.
+- Configuración de `ossec.conf` para capturar el canal `Microsoft-Windows-Sysmon/Operational`.
+- Evidencias documentadas en [`docs/evidence_win10.md`](./docs/evidence_win10.md).
+- Queries de threat hunting añadidas en [`docs/hunting_win10.md`](./docs/hunting_win10.md).
+- Exportado dashboard básico de Sysmon (`/dashboards/sysmon_basic.ndjson`).
+- Roadmap actualizado en README.
+
+## v0.1.0 – 2025-08-XX
+- Versión inicial con Honeypot **Cowrie** integrado con Wazuh.
+- Reglas locales para detección de `cowrie.login.failed` (MITRE T1110) y `cowrie.login.success` (MITRE T1078).
+- Diagramas de arquitectura V1 en [`docs/architecture.md`](./docs/architecture.md).
+- Dashboards NDJSON exportados para accesos fallidos y exitosos.
+- Test Plan inicial (`docs/test-plan.md`) con escenarios reproducibles.
+
 
 El formato sigue **Keep a Changelog** y el versionado es **SemVer**.
 
