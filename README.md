@@ -309,6 +309,7 @@ mini-soc-wazuh-cowrie/
 │   ├── dashboards.md
 │   ├── test-plan.md
 │   ├── evidence_win10.md
+│   ├── hunting_win10.md
 │   └── versions.md
 ├── evidence/
 │   ├── cowrie/
