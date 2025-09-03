@@ -155,11 +155,53 @@ Configurar conexión al Manager en:
 </client>
 ```
 
-2) Instalar y configurar Sysmon
+### 2) Instalar y configurar Sysmon
 
 - Descarga Sysmon desde [Sysinternal](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon)
 
 - Instálalo con un archivo de configuración (ejemplo: [SwiftOnSecurity config](https://github.com/SwiftOnSecurity/sysmon-config)):
+
+```
+Sysmon64.exe -accepteula -i sysmonconfig-export.xml
+```
+
+### 3) Recolección de logs de Sysmon en Wazuh Agent
+
+Edita el `ossec.conf` del agente y añade:
+
+```
+<!-- C:\Program Files (x86)\ossec-agent\ossec.conf -->
+<localfile>
+  <location>Microsoft-Windows-Sysmon/Operational</location>
+  <log_format>eventchannel</log_format>
+</localfile>
+
+```
+
+Reinicia el servicio:
+
+```
+Restart-Service -Name WazuhSvc
+```
+
+### 4) Validación rápida
+
+- Genera actividad sospechosa, por ejemplo:
+
+```
+whoami
+net user
+powershell -c "Start-Process notepad.exe"
+
+```
+
+- En el Wazuh Dashboard (Manager): ir a Threat Hunting y filtrar:
+
+   - `agent.name:"Win10-VM" AND data.win.system.eventID:"1"` (ProcessCreate)
+
+   - `agent.name:"Win10-VM" AND data.win.system.eventID:"4625"` (Logon failure - Unknown user or bad password.)
+
+✅ Plan de pruebas reproducible: ver docs/test-plan.md
 ---
 
 ## 🐍 Ataque de ejemplo con Hydra
