@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.3.0 – 2025-09-XX
+- Publicación oficial del proyecto **Mini-SOC** en LinkedIn y GitHub.
+- Añadida documentación de difusión en [`docs/publication.md`](./docs/publication.md) con capturas y resumen técnico.
+- Evidencias finales organizadas y presentadas para reclutadores (Cowrie + Windows + Sysmon).
+- Mejora del README con enlaces a publicaciones externas y métricas de visitas.
+- Roadmap actualizado hacia Mes 2 (integración de IDS de red como Suricata/Zeek).
+
+
 # 📜 CHANGELOG – Mini-SOC Wazuh + Cowrie + Sysmon
 
 ## v0.2.0 – 2025-09-03
