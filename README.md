@@ -276,6 +276,7 @@ Más ejemplos en [`docs/dashboards.md`](docs/dashboards.md).
 # Evidencias – Windows 10 + Sysmon
 
 - Evidencias V2: [Windows 10 + Sysmon](./docs/evidence_win10.md)
+- Threat Hunting: [Queries Sysmon](./docs/hunting_win10.md)
 
 ---
 
