@@ -204,3 +204,81 @@ hydra -l root -P pass.txt -s 2222 ssh://<IP_HONEYPOT> -t 4 -f
 ```
 ssh -p 2222 root@<IP_HONEYPOT>
 ```
+
+
+---
+
+# Test Plan — Mini-SOC Wazuh + Windows 10 + Sysmon
+
+## Objetivo
+Validar que el endpoint Windows (Win10-VM) genera eventos a través de **Sysmon** y que el agente Wazuh los recoge, decodifica y correlaciona con MITRE ATT&CK.
+
+## Alcance
+- Eventos cubiertos:
+  - `EventID 1` → **ProcessCreate** (MITRE T1059.001 – PowerShell, Execution)
+  - `EventID 3` → **NetworkConnect** (MITRE T1049/T1071 – Discovery / C2)
+  - `EventID 11` → **FileCreate** (MITRE T1105 – Ingress Tool Transfer)
+- (Opcional / Próxima versión)
+  - `EventID 4720` (Windows Security) → Creación de usuario local
+  - `EventID 4625` (Windows Security) → Intentos fallidos de login
+
+## Prerrequisitos
+- Infra:
+  - Manager Wazuh funcionando y accesible.
+  - VM **Win10-VM** con Wazuh Agent + Sysmon configurados.
+- Config:
+  - `ossec.conf` con `<localfile>` apuntando a `Microsoft-Windows-Sysmon/Operational`.
+  - Sysmon instalado con archivo de configuración (SwiftOnSecurity o mínimo).
+- Importables:
+  - Consultas de hunting en `docs/hunting_win10.md` o `dashboards/`.
+
+---
+
+## Matriz de pruebas
+
+| ID | Escenario | Generación de evento | Esperado en Wazuh | MITRE | Evidencia |
+|----|-----------|----------------------|-------------------|-------|----------|
+| W1 | Creación de proceso | Ejecutar `notepad.exe` o `SecEdit.exe` desde PowerShell | Evento con `data.win.system.eventID=1` | T1059.001 | Captura listado + detalle JSON |
+| W2 | Conexión de red | `ping 8.8.8.8` o `curl` a un sitio externo | Evento con `data.win.system.eventID=3` | T1071 | Captura listado + detalle JSON |
+| W3 | Creación de archivo | Crear un archivo `malware.exe` en `C:\Temp\` | Evento con `data.win.system.eventID=11` | T1105 | Captura listado + detalle JSON |
+| W4* | Intentos de login fallidos | Probar credenciales inválidas en Win10 | Evento con `eventID=4625` | T1110 | Capturas |
+| W5* | Creación de usuario | `net user hacker123 Passw0rd! /add` | Evento con `eventID=4720` | T1136 | Capturas |
+
+\* W4/W5 son opcionales (Windows Security logs, no Sysmon).
+
+---
+
+## Ejemplo de validación (W1)
+1. En Win10-VM, abre PowerShell y ejecuta:
+   ```powershell
+   Start-Process notepad.exe
+```
+
+2. En Wazuh Dashboard:
+
+ - Buscar:
+```
+agent.name:"Win10-VM" AND data.win.system.eventID:"1"
+```
+
+3. Esperado:
+
+  - Evento con Image=notepad.exe.
+
+  - Mapeo MITRE T1059.001 (Execution).
+
+4 Evidencia:
+
+  - Captura del listado de eventos.
+
+  - Captura del detalle con MITRE.
+
+## Criterios de aceptación (Pass/Fail)
+
+PASS si:
+
+- W1/W2/W3 producen eventos en Wazuh con EventID correcto y mapeo MITRE.
+
+FAIL si:
+
+ - No aparecen eventos tras ejecutar acciones de prueba.
