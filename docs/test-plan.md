@@ -250,7 +250,7 @@ Validar que el endpoint Windows (Win10-VM) genera eventos a través de **Sysmon*
 
 ## Ejemplo de validación (W1)
 1. En Win10-VM, abre PowerShell y ejecuta:
-   ```powershell
+```
    Start-Process notepad.exe
 ```
 
