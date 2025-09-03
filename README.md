@@ -201,7 +201,7 @@ powershell -c "Start-Process notepad.exe"
 
    - `agent.name:"Win10-VM" AND data.win.system.eventID:"4625"` (Logon failure - Unknown user or bad password.)
 
-✅ Plan de pruebas reproducible: ver docs/test-plan.md
+- ✅ **Plan de pruebas reproducible:** ver [docs/test-plan.md](docs/test-plan.md)
 ---
 
 ## 🐍 Ataque de ejemplo con Hydra
