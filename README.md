@@ -140,8 +140,8 @@ sudo systemctl enable --now wazuh-agent
 ## ⚙️ Pasos de instalación Version 2 - Windows + Sysmon + Wazuh Agent (resumen)
 
 ### 1) Instalar Wazuh Agent en Windows
-- Descarga el instalador MSI desde la [página oficial de Wazuh](https://documentation.wazuh.com/current/installation-guide/wazuh-agent/wazuh-agent-package.html#windows).  
-- Durante la instalación, especifica la IP del Manager (ejemplo `192.168.229.133`).  
+- Descarga el instalador MSI desde la [página oficial de Wazuh](https://wazuh.com/).  
+- Durante la instalación, especifica la IP del Manager (ejemplo `<IP_MANAGER>`).  
 
 Configurar conexión al Manager en:
 ```xml
@@ -158,7 +158,7 @@ Configurar conexión al Manager en:
 
 - Descarga Sysmon desde [Sysinternal](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon)
 
-Instálalo con un archivo de configuración (ejemplo: [SwiftOnSecurity config](https://github.com/SwiftOnSecurity/sysmon-config)):
+- Instálalo con un archivo de configuración (ejemplo: [SwiftOnSecurity config](https://github.com/SwiftOnSecurity/sysmon-config)):
 ---
 
 ## 🐍 Ataque de ejemplo con Hydra
