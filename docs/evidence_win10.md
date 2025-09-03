@@ -11,7 +11,7 @@
 <img width="1901" height="829" alt="image" src="https://github.com/user-attachments/assets/fcd5b51a-8aac-4319-990c-d5a7cb782676" />
 
 ---
-JSON: [`sysmon_process.json`](../evidence/win10/sysmon_process.json)
+JSON: [`sysmon_process.json`](docs/evidence/win10/sysmon_process.json)
 
 ## Sysmon – Servicio/arranque modificado (EventID 4/12/13/7040 W.Event)
 ---
