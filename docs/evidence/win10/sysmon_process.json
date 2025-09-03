@@ -1,0 +1,47 @@
+{
+  "agent": {
+    "ip": "10.0.0.5",
+    "name": "WinEndpoint01",
+    "id": "003"
+  },
+  "manager": {
+    "name": "wazuh-manager"
+  },
+  "data": {
+    "win": {
+      "eventdata": {
+        "image": "C:\\Windows\\SysWOW64\\SecEdit.exe",
+        "parentImage": "C:\\Windows\\SysWOW64\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "commandLine": "\"C:\\Windows\\system32\\SecEdit.exe\" /export /cfg C:\\Windows\\TEMP/secexport.cfg",
+        "hashes": "MD5=BFC13856291E4B804D33BBAEFC8CB3B5, SHA256=56CB815F0FDA92C4658296692E4F70DEE557137528482FE7A834296BFDB710C0",
+        "user": "NT AUTHORITY\\SYSTEM"
+      },
+      "system": {
+        "eventID": "1",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "providerName": "Microsoft-Windows-Sysmon",
+        "systemTime": "2025-09-03T12:24:09.848Z",
+        "computer": "WINLAB01"
+      }
+    }
+  },
+  "rule": {
+    "level": 4,
+    "description": "SecEdit.exe launched by PowerShell in a suspicious context",
+    "groups": ["sysmon", "execution", "windows"],
+    "mitre": {
+      "technique": ["PowerShell"],
+      "id": ["T1059.001"],
+      "tactic": ["Execution"]
+    },
+    "id": "92066"
+  },
+  "decoder": {
+    "name": "windows_eventchannel"
+  },
+  "input": {
+    "type": "log"
+  },
+  "@timestamp": "2025-09-03T12:24:10.526Z",
+  "location": "EventChannel"
+}
