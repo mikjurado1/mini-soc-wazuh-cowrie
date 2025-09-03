@@ -1,4 +1,4 @@
-
+## 🏗️ Arquitectura v2 (Mermaid)
 ```mermaid
 flowchart LR
   A[Kali - Atacante] -- SSH:2222/Hydra --> B[Cowrie Honeypot<br/>192.168.229.134]
