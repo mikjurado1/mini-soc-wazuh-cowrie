@@ -283,11 +283,15 @@ FAIL si:
 
  - No aparecen eventos tras ejecutar acciones de prueba.
 
-## Ejemplo de validación (W4)
-- W4: File creation detected (EventID 11)
-  - Process: C:\Windows\system32\cleanmgr.exe
-  - Target File: C:\Users\Leah\AppData\Local\Temp\...\WimProvider.dll
-  - Rule: 92213 → MITRE T1105 (Ingress Tool Transfer)
-  - Result: Detected by Wazuh. Classified as false positive since cleanmgr.exe is a legitimate Windows tool.
-  - Action: Documented as tuning case (Sysmon noise).
+### W3: Eliminación de cuenta de usuario local (EventID 4726)
+Acción:
+   En Win10-VM, ejecutar: net user hacker123 /delete
+Esperado:
+   Evento de seguridad con EventID 4726 detectado en Wazuh.
+Mapeo MITRE: T1531 (Account Access Removal)
+Evidencia:
+   - Captura del listado de eventos.
+   - Captura del detalle con el nombre del usuario eliminado.
+Criterio de aceptación:
+   PASS si aparece evento con EventID 4726 y username=hacker123.
 
