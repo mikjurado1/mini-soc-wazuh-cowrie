@@ -284,14 +284,22 @@ FAIL si:
  - No aparecen eventos tras ejecutar acciones de prueba.
 
 ### W3: Eliminación de cuenta de usuario local (EventID 4726)
+W3: Eliminación de usuario local (EventID 4726)
 Acción:
-   En Win10-VM, ejecutar: net user hacker123 /delete
+   net user hacker123 /delete
 Esperado:
-   Evento de seguridad con EventID 4726 detectado en Wazuh.
-Mapeo MITRE: T1531 (Account Access Removal)
-Evidencia:
-   - Captura del listado de eventos.
-   - Captura del detalle con el nombre del usuario eliminado.
-Criterio de aceptación:
-   PASS si aparece evento con EventID 4726 y username=hacker123.
+   Evento en Wazuh con EventID 4726 y username=hacker123.
+MITRE:
+   T1531 (Account Access Removal).
+   
+### W4 (falso positivo + tuning)
+W4: File creation detected (EventID 11) - cleanmgr.exe
+Resultado:
+   Detectado por regla 92213 → T1105.
+Acción:
+   Clasificado como falso positivo y excluido con regla local (id=100150).
+
+
+
+
 
