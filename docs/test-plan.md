@@ -282,3 +282,12 @@ PASS si:
 FAIL si:
 
  - No aparecen eventos tras ejecutar acciones de prueba.
+
+## Ejemplo de validación (W4)
+- W4: File creation detected (EventID 11)
+  - Process: C:\Windows\system32\cleanmgr.exe
+  - Target File: C:\Users\Leah\AppData\Local\Temp\...\WimProvider.dll
+  - Rule: 92213 → MITRE T1105 (Ingress Tool Transfer)
+  - Result: Detected by Wazuh. Classified as false positive since cleanmgr.exe is a legitimate Windows tool.
+  - Action: Documented as tuning case (Sysmon noise).
+
