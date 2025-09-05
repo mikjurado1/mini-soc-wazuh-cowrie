@@ -31,3 +31,27 @@ JSON: [`sysmon_process.json`](evidence/win10/sysmon_process.json)
 - T1059.001 (PowerShell – ejecución)
 - T1087 (Account Discovery – `net.exe`)
 - T1105 (C2/transferencia de ficheros via PowerShell)
+
+---
+### W1 – Ejecución PowerShell/Notepad (EventID 1)
+
+<img width="1904" height="917" alt="image" src="https://github.com/user-attachments/assets/9ecd147f-b645-47c3-8827-5a50e7a0377a" />
+
+
+---
+### W2 – Intentos fallidos de login (EventID 4625)
+
+<img width="1902" height="918" alt="image" src="https://github.com/user-attachments/assets/8c33134a-d55e-4cd2-a306-38ad1fd43191" />
+
+
+---
+### W3 – Eliminación de usuario local (EventID 4720)
+<img width="1900" height="745" alt="image" src="https://github.com/user-attachments/assets/f854fbb1-b073-43e0-82eb-d72ba68c2054" />
+
+---
+### W4 – Falso positivo (EventID 11 – cleanmgr.exe)
+
+<img width="1899" height="855" alt="image" src="https://github.com/user-attachments/assets/4f5de7d4-c9b7-431a-90e4-3c5df0de39c1" />
+
+
+<img width="1907" height="864" alt="image" src="https://github.com/user-attachments/assets/3c3c92e7-e2ae-43d8-9e75-5f13ffe8092d" />
