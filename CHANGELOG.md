@@ -10,6 +10,26 @@
 
 # 📜 CHANGELOG – Mini-SOC Wazuh + Cowrie + Sysmon
 
+## [v0.2.0] – 2025-09-05
+
+### Added
+- Reglas locales en `local_rules.xml` para:
+  - EventID 1 → Ejecución de PowerShell/Notepad (MITRE T1059.001).
+  - EventID 4625 → Intentos fallidos de login (MITRE T1110).
+  - EventID 4726 → Eliminación de usuario local `hacker123` (MITRE T1531).
+- Regla de exclusión para `cleanmgr.exe` (EventID 11) → reducción de falso positivo (Sysmon noise).
+- Evidencias organizadas en `/evidence/win10/` (W1–W4) con capturas y JSON.
+- Actualización de `docs/test-plan.md` incluyendo casos W1–W4 y criterios PASS/FAIL.
+
+### Changed
+- `README.md` actualizado con referencia a tuning de falsos positivos.
+- Roadmap ajustado hacia Semana 7 (instalación IDS de red).
+
+### Notes
+- Publicación en LinkedIn sobre falso positivo (cleanmgr.exe) vinculada al proyecto en GitHub.
+- Preparado el entorno para la integración de Suricata/Zeek en la próxima versión.
+
+
 ## v0.2.0 – 2025-09-03
 - Añadido endpoint **Windows 10 (Win10-VM)** con **Sysmon + Wazuh Agent**.
 - Configuración de `ossec.conf` para capturar el canal `Microsoft-Windows-Sysmon/Operational`.
