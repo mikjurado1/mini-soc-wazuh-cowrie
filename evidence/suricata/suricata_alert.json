@@ -1,0 +1,92 @@
+{
+  "agent": {
+    "ip": "192.168.229.144",
+    "name": "suricata-server",
+    "id": "005"
+  },
+  "manager": {
+    "name": "wazuh-manager"
+  },
+  "data": {
+    "app_proto": "dhcp",
+    "in_iface": "ens33",
+    "src_ip": "192.168.229.128",
+    "src_port": "68",
+    "event_type": "alert",
+    "alert": {
+      "severity": "1",
+      "signature_id": "2022973",
+      "rev": "1",
+      "metadata": {
+        "performance_impact": [
+          "Low"
+        ],
+        "attack_target": [
+          "Client_Endpoint"
+        ],
+        "updated_at": [
+          "2019_07_26"
+        ],
+        "confidence": [
+          "Medium"
+        ],
+        "reviewed_at": [
+          "2024_04_19"
+        ],
+        "created_at": [
+          "2016_07_18"
+        ],
+        "signature_severity": [
+          "Informational"
+        ],
+        "deployment": [
+          "Perimeter"
+        ]
+      },
+      "gid": "1",
+      "signature": "ET INFO Possible Kali Linux hostname in DHCP Request Packet",
+      "action": "allowed",
+      "category": "Potential Corporate Privacy Violation"
+    },
+    "flow_id": "195749901376928.000000",
+    "dest_ip": "192.168.229.254",
+    "proto": "UDP",
+    "dest_port": "67",
+    "pkt_src": "wire/pcap",
+    "flow": {
+      "src_ip": "192.168.229.128",
+      "src_port": "68",
+      "pkts_toserver": "1",
+      "dest_ip": "192.168.229.254",
+      "start": "2025-09-08T13:29:12.897544+0000",
+      "bytes_toclient": "0",
+      "bytes_toserver": "324",
+      "pkts_toclient": "0",
+      "dest_port": "67"
+    },
+    "timestamp": "2025-09-08T13:29:12.897544+0000",
+    "direction": "to_server"
+  },
+  "rule": {
+    "firedtimes": 18,
+    "mail": false,
+    "level": 3,
+    "description": "Suricata: Alert - ET INFO Possible Kali Linux hostname in DHCP Request Packet",
+    "groups": [
+      "ids",
+      "suricata"
+    ],
+    "id": "86601"
+  },
+  "decoder": {
+    "name": "json"
+  },
+  "input": {
+    "type": "log"
+  },
+  "@timestamp": "2025-09-08T13:29:12.983Z",
+  "location": "/var/log/suricata/eve.json",
+  "id": "1757338152.197444",
+  "timestamp": "2025-09-08T13:29:12.983+0000",
+  "_id": "YBeEKZkBjM34gblhWqJZ"
+}
