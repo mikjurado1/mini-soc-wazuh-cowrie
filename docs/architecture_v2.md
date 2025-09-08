@@ -138,7 +138,7 @@ Objetivo: Actuar como el núcleo del Mini-SOC, simulando la operación de un SOC
 
 \* Todos los agentes envían por TCP 1514 (logs) y 1515 (gestión/clave) hacia el Wazuh Manager.
 
-Diagrama (Mermaid)
+###Diagrama (Mermaid)
 ```mermaid
 flowchart LR
   A[Kali] -->|Escaneos / HTTP / DNS| S[Suricata IDS]
@@ -155,6 +155,7 @@ flowchart LR
   end
 
   M --> K[Kibana / Wazuh Dashboards]
+
 ```
 
 Config clave por fuente (minimal)
