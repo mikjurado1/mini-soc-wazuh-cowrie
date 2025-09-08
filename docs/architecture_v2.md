@@ -136,7 +136,7 @@ Objetivo: Actuar como el núcleo del Mini-SOC, simulando la operación de un SOC
 | **Windows 10 (Sysmon + Security)** | Eventos Windows + Sysmon | Canal Windows + Sysmon (agente Wazuh Win) | **Wazuh Agent** → Manager | `alerts.json` (decoders `windows`, `sysmon`) | `EventID 1 ProcessCreate`, `4625 Failed logon` |
 | **Linux host (rootcheck/FIM)** | Integridad / Rootcheck | `rootcheck`, `/var/ossec/` | **Wazuh Agent** → Manager | `alerts.json` (decoder `rootcheck`) | `Trojaned version of file '/bin/passwd' detected` |
 
-\* Todos los agentes envían por TCP 1514 (logs) y 1515 (gestión/clave) hacia el Wazuh Manager.
+Todos los agentes envían por TCP 1514 (logs) y 1515 (gestión/clave) hacia el Wazuh Manager.
 
 ###Diagrama (Mermaid)
 ```mermaid
