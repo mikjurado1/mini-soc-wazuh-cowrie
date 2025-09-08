@@ -300,6 +300,25 @@ Acción:
    Clasificado como falso positivo y excluido con regla local (id=100150).
 
 
+### Objetivo
+
+Validar la capacidad del Mini-SOC para detectar distintos tipos de ataques y comportamientos sospechosos, usando fuentes de logs heterogéneas:
+
+Suricata (IDS de red)
+
+Rootcheck (integridad de archivos en Linux)
+
+### 🛠️ Escenarios de prueba – Suricata & Rootcheck
+
+| ID | Ataque simulado | Herramienta / Comando | Fuente de detección | Alerta generada | Severidad |
+|----|-----------------|------------------------|---------------------|-----------------|-----------|
+| S1 | Escaneo de red SYN | `nmap -sS -T4 -p1-1000 <IP_suricata>` | Suricata | `ET SCAN Nmap Scripting Engine User-Agent Detected` | 3 |
+| S2 | Tráfico HTTP sospechoso | `curl -A "sqlmap" http://<IP_suricata>` | Suricata | `ET INFO GNU/Linux APT User-Agent Outbound likely related to package management` | 3 |
+| S3 | Consulta DNS anómala | `dig test.malwaredomain.com @<IP_suricata>` | Suricata | `ET INFO Possible DNS Tunneling Attempt` | 2–3 |
+| R1 | Binario modificado | (detección automática en `/bin/passwd`) | Rootcheck | `Trojaned version of file '/bin/passwd' detected` | 7 |
+| R2 | Detección de anomalías en host | Escaneo de rootkits y binarios alterados (rootcheck programado) | Rootcheck | `Host-based anomaly detection event (rootcheck)` | 7 |
+
+
 
 
 
