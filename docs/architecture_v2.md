@@ -34,3 +34,93 @@ Wazuh Agents: recolectan logs de cada máquina (Cowrie, Suricata, Windows).
 Wazuh Manager + Kibana (192.168.229.133): centraliza alertas, aplica reglas de correlación y visualiza dashboards.
 
 ➡️ El flujo de datos va de fuentes de logs → agentes → manager → dashboards, simulando un SOC real.
+
+📌 Explicación de cada VM
+
+🔹 Kali Linux – Atacante
+
+Rol: Máquina ofensiva usada para simular ataques reales.
+
+Herramientas utilizadas:
+
+`nmap` → escaneos de red (SYN, versión, scripts NSE).
+
+`curl` → tráfico HTTP con user-agents sospechosos (ej. sqlmap, Nmap NSE).
+
+`hydra` → ataques de fuerza bruta contra servicios SSH expuestos (Cowrie).
+
+`dig` → consultas DNS para simular tunneling o resoluciones sospechosas.
+
+Objetivo: Generar tráfico malicioso controlado que dispare alertas en Suricata y Wazuh.
+
+🔹 Suricata – IDS de Red
+
+Rol: Sistema de Detección de Intrusos (IDS) desplegado en una VM Linux.
+
+Logs: `/var/log/suricata/eve.json` recolectados por Wazuh Agent.
+
+Qué detecta:
+
+Escaneos Nmap.
+
+User-agents sospechosos (`sqlmap`, `Nmap NSE`).
+
+Posibles DNS tunneling.
+
+C2 / tráfico malicioso basado en reglas Emerging Threats (ET).
+
+Objetivo: Inspeccionar tráfico de red y generar alertas para análisis en el SIEM.
+
+🔹 Cowrie – Honeypot SSH
+
+Rol: Honeypot de alta interacción simulando un servidor SSH vulnerable.
+
+Logs: `cowrie.log` y `cowrie.json` enviados al Wazuh Agent.
+
+Qué detecta:
+
+Intentos de fuerza bruta con Hydra.
+
+Sesiones de login exitosas/fallidas.
+
+Comandos ejecutados por atacantes dentro del honeypot.
+
+Objetivo: Capturar comportamientos de intrusión SSH y enriquecer la visibilidad del SOC.
+
+🔹 Windows 10 con Sysmon – Endpoint Monitorizado
+
+Rol: Simulación de un endpoint corporativo monitorizado con Sysmon + Wazuh Agent.
+
+Logs enviados:
+
+EventID 1 → creación de procesos (`powershell.exe`, `cmd.exe`).
+
+EventID 3 → conexiones de red salientes.
+
+EventID 4625 → intentos fallidos de login.
+
+EventID 4720 → creación de cuentas locales.
+
+Objetivo: Detección de actividad sospechosa a nivel host (procesos, usuarios, accesos).
+
+🔹 Wazuh Manager + Kibana – SIEM Central
+
+Rol: Consolida y correlaciona los logs de todas las fuentes (Cowrie, Suricata, Sysmon).
+
+Servicios:
+
+Wazuh Manager → ingesta y análisis de logs, correlación de reglas.
+
+Kibana/Wazuh Dashboard → visualización de alertas y dashboards personalizados.
+
+Ejemplos de detección:
+
+Rootcheck detectando binarios trojanizados (`/bin/passwd`).
+
+Alertas IDS de Suricata (`ET INFO Possible Kali Linux hostname`).
+
+Fuerza bruta SSH desde Kali → Cowrie.
+
+Actividad sospechosa en Windows (Sysmon).
+
+Objetivo: Actuar como el núcleo del Mini-SOC, simulando la operación de un SOC real.
