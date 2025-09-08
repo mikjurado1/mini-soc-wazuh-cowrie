@@ -7,7 +7,13 @@
 [![Release](https://img.shields.io/github/v/release/mikjurado1/mini-soc-wazuh-cowrie?sort=semver)](https://github.com/mikjurado1/mini-soc-wazuh-cowrie/releases)
 
 
-Proyecto de laboratorio para aprender y demostrar habilidades de **detección**, **recolección de logs** y **análisis** en un mini‑SOC casero usando **Wazuh SIEM** y el **honeypot Cowrie**. Incluye guía para reproducir el entorno, reglas personalizadas de Wazuh y ejemplos de ataques.
+## 📌 Descripción
+
+Proyecto de laboratorio para aprender y demostrar habilidades de **detección**, **recolección de logs** y **análisis** en un **mini-SOC casero** con **Wazuh SIEM** como núcleo. Integra múltiples fuentes: **Suricata (IDS de red)**, **Cowrie (honeypot SSH)**, **Windows 10 + Sysmon** y **Rootcheck** en Linux, permitiendo **detectar, correlacionar y visualizar** ataques reales simulados desde **Kali Linux** (Nmap, Hydra, curl/sqlmap, dig).
+
+- Incluye **guía para reproducir el entorno**, **reglas personalizadas de Wazuh** y **ejemplos de ataques** con evidencias (dashboards + JSON).
+- **Objetivo:** mostrar cómo se detectan amenazas en **red y endpoints** y servir como **portfolio práctico** para roles de *SOC Analyst* / *IT Security Support*.
+
 
 > Estado del autor: Funcionando con Wazuh Manager en `192.168.229.133` y honeypot Cowrie + wazuh‑agent en `192.168.229.134` (puerto SSH simulado `2222`).
 
@@ -29,6 +35,24 @@ Proyecto de laboratorio para aprender y demostrar habilidades de **detección**,
 - Detectar y clasificar ataques de **fuerza bruta SSH** con reglas personalizadas.
 - Crear filtros y paneles en Wazuh/Elastic para **Threat Hunting**.
 - Documentar y presentar el proyecto como experiencia práctica.
+
+
+## ⚙️ Tecnologías usadas
+- **Wazuh Manager + Kibana** → SIEM central para correlación de eventos y visualización.  
+- **Suricata** → IDS de red para detectar tráfico malicioso (escaneos, DNS tunneling, user-agents sospechosos).  
+- **Cowrie** → Honeypot SSH para capturar intentos de fuerza bruta y comandos ejecutados.  
+- **Windows 10 con Sysmon** → Telemetría avanzada de procesos, conexiones y accesos de usuarios.  
+- **Rootcheck (Linux)** → Integridad de archivos y detección de anomalías en binarios críticos.  
+- **Kali Linux** → Máquina atacante usada para generar tráfico y ataques controlados (Nmap, Hydra, curl, dig).  
+
+
+## 🚨 Ejemplos de ataques detectados
+- **Escaneo Nmap** → detectado por Suricata como `ET SCAN Nmap Scripting Engine`.  
+- **Fuerza bruta SSH con Hydra** → capturado en Cowrie (`cowrie.login.failed`, `cowrie.login.success`).  
+- **User-Agent sospechoso con curl/sqlmap** → detectado por Suricata (`ET INFO GNU/Linux APT User-Agent Outbound`).  
+- **DNS tunneling simulado** → alerta de Suricata (`ET INFO Possible DNS Tunneling Attempt`).  
+- **Binario modificado en Linux** → Rootcheck detecta `/bin/passwd` trojanizado.  
+- **Procesos sospechosos en Windows** → Sysmon detecta ejecución de `powershell.exe`.  
 
 ---
 
