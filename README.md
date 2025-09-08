@@ -235,6 +235,57 @@ powershell -c "Start-Process notepad.exe"
 - ✅ **Plan de pruebas reproducible:** ver [docs/test-plan.md](docs/test-plan.md)
 ---
 
+
+
+## ⚙️ Pasos de instalación Version 3 - Suricata + Wazuh Agent (resumen)
+
+1. **Clonar el repositorio**
+   ```
+   git clone https://github.com/mikjurado1/mini-soc-wazuh-cowrie.git
+   cd mini-soc-wazuh-cowrie
+   ```
+  - Desplegar las máquinas virtuales
+
+2. **Wazuh Manager + Kibana (SIEM central).
+
+ - Suricata IDS (detección de tráfico en red).
+
+ - Cowrie Honeypot (SSH expuesto).
+
+ - Windows 10 con Sysmon (endpoint monitorizado).
+
+ - Kali Linux (máquina atacante para pruebas).
+
+3. Configurar los agentes de Wazuh
+
+ - En Suricata: añadir <localfile> para eve.json.
+
+ - En Cowrie: añadir <localfile> para cowrie.json.
+
+ - En Windows: instalar Sysmon + Wazuh Agent.
+
+ - Verificar conectividad con el Manager (agent_control -lc).
+
+4. Simular ataques desde Kali
+
+ - Escaneo Nmap → detectado en Suricata.
+
+ - Hydra contra SSH → capturado en Cowrie.
+
+ - Curl con user-agent sospechoso → alertas en Suricata.
+
+ - DNS tunneling con dig → alerta de Suricata.
+
+ - Rootcheck detectando binario modificado (/bin/passwd).
+
+5. Visualizar resultados en Kibana
+
+ - Dashboards exportados (dashboards/*.ndjson).
+
+ - Evidencias en evidence/ (capturas + JSON recortados).
+
+
+---
 ## 🐍 Ataque de ejemplo con Hydra
 Ejemplo básico (diccionarios pequeños):
 ```bash
