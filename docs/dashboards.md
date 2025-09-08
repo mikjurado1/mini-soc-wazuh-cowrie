@@ -53,7 +53,9 @@ data.eventid: "cowrie.login.success"
   - **Service Startup Change** → identifica modificaciones en servicios (EventID 7045).
 
 - **Ejemplo de captura:**  
-  ![Sysmon Dashboard](img/sysmon_dashboard.png)
+<img width="1901" height="917" alt="image" src="https://github.com/user-attachments/assets/156a9fb4-84e4-4480-bbe9-f414e68198bc" />
+
+<img width="1900" height="900" alt="image" src="https://github.com/user-attachments/assets/745d1fd7-d544-4f3c-a2e5-3264c4528bcb" />
 
 ---
 
