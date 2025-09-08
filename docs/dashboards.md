@@ -37,3 +37,61 @@ data.eventid: "cowrie.login.success"
 <img width="1919" height="912" alt="image" src="https://github.com/user-attachments/assets/4cbf8eba-1594-4637-96b1-6aa3d6ebcb56" />
 
 <img width="1916" height="822" alt="image" src="https://github.com/user-attachments/assets/38be6fb9-6fbd-46bf-aa31-fd9268cc4554" />
+
+
+
+## 🔹 Sysmon (Windows 10)
+
+- **Dashboards exportados:**
+  - `Sysmon_LogonFailure.ndjson`
+  - `Sysmon_ProcessCreate.ndjson`
+  - `ServiceStartupChange.ndjson`
+
+- **Descripción:**
+  - **Logon Failure** → muestra intentos de inicio de sesión fallidos (EventID 4625).  
+  - **Process Create** → visualiza procesos ejecutados (EventID 1, `powershell.exe`, `cmd.exe`).  
+  - **Service Startup Change** → identifica modificaciones en servicios (EventID 7045).
+
+- **Ejemplo de captura:**  
+  ![Sysmon Dashboard](img/sysmon_dashboard.png)
+
+---
+
+## 🔹 Suricata (IDS de Red)
+
+- **Dashboard exportado:**
+  - (Pendiente de añadir export → por ahora se ven en alertas Suricata en `alerts.json`)
+
+- **Descripción:**
+  - Visualiza alertas de red (`event_type: alert`), como:
+    - Escaneos Nmap detectados.  
+    - User-Agent sospechoso (`sqlmap`, `Nmap NSE`).  
+    - DNS tunneling / tráfico anómalo.  
+
+- **Ejemplo de captura:**  
+<img width="1902" height="921" alt="image" src="https://github.com/user-attachments/assets/9ef6b988-9c90-4764-bc48-bdfc63ac2674" />
+
+<img width="1904" height="750" alt="image" src="https://github.com/user-attachments/assets/4710c81c-735f-436a-b9c6-41e6946b1d8b" />
+
+
+---
+
+## 🔹 Rootcheck (Integridad de Archivos)
+
+- **Dashboard interno de Wazuh** (no exportado como NDJSON).  
+- **Descripción:**
+  - Muestra alertas de integridad en archivos críticos.  
+  - Ejemplo: detección de binario `/bin/passwd` alterado (Trojaned).  
+
+- **Ejemplo de captura:**  
+<img width="1899" height="920" alt="image" src="https://github.com/user-attachments/assets/2c8b19d3-3632-4658-a666-e725aae6c0dc" />
+
+<img width="1896" height="732" alt="image" src="https://github.com/user-attachments/assets/9cffd725-7bfe-4deb-8ce8-1b80890fc576" />
+
+
+---
+
+## 📌 Próximos pasos
+
+- Integrar todos los dashboards en un **overview unificado** para tener una visión 360º (ataques SSH, escaneos de red, actividad endpoint).
+- Añadir export en `dashboards/suricata_alerts.ndjson` cuando esté listo.
