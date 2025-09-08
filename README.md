@@ -323,8 +323,12 @@ mini-soc-wazuh-cowrie/
 │   ├── hunting_win10.md
 │   └── versions.md
 ├── evidence/
-│   ├── rootcheck/README.md
-│   ├── suricata/README.md
+│   ├── rootcheck/
+│   │ ├── README.md
+│   │ ├── rootcheck_passwd.json
+│   ├── suricata/
+│   │ ├── README.md
+│   │ ├── suricata_alert.json
 │   ├── cowrie/
 │   ├── win10/
 │   ├── agent_active.md
