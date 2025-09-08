@@ -1,5 +1,11 @@
 # Consultas útiles para Threat Hunting (Wazuh/Elastic)
 
+# 📊 Dashboards – Mini-SOC Wazuh
+
+Este laboratorio cuenta con varios dashboards creados en Kibana/Wazuh y exportados en formato **NDJSON**.  
+Cada dashboard corresponde a un caso de uso específico (Cowrie, Sysmon, Suricata) y sirve para visualizar evidencias de ataques simulados.
+
+
 ## Solo eventos del honeypot
 ```
 agent.name: "honeypot"
