@@ -1,0 +1,43 @@
+{
+  "agent": {
+    "ip": "192.168.229.144",
+    "name": "suricata-server",
+    "id": "005"
+  },
+  "manager": {
+    "name": "wazuh-manager"
+  },
+  "data": {
+    "file": "/usr/bin/diff",
+    "title": "Trojaned version of file detected."
+  },
+  "rule": {
+    "firedtimes": 8,
+    "mail": false,
+    "level": 7,
+    "pci_dss": [
+      "10.6.1"
+    ],
+    "description": "Host-based anomaly detection event (rootcheck).",
+    "groups": [
+      "ossec",
+      "rootcheck"
+    ],
+    "id": "510",
+    "gdpr": [
+      "IV_35.7.d"
+    ]
+  },
+  "decoder": {
+    "name": "rootcheck"
+  },
+  "full_log": "Trojaned version of file '/usr/bin/diff' detected. Signature used: 'bash|^/bin/sh|file\\.h|proc\\.h|/dev/[^n]|^/bin/.*sh' (Generic).",
+  "input": {
+    "type": "log"
+  },
+  "@timestamp": "2025-09-08T12:25:04.385Z",
+  "location": "rootcheck",
+  "id": "1757334304.125793",
+  "timestamp": "2025-09-08T12:25:04.385+0000",
+  "_id": "_hdJKZkBjM34gblhf6GW"
+}
