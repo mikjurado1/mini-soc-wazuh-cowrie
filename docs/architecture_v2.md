@@ -138,3 +138,122 @@ Objetivo: Actuar como el núcleo del Mini-SOC, simulando la operación de un SOC
 
 \* Todos los agentes envían por TCP 1514 (logs) y 1515 (gestión/clave) hacia el Wazuh Manager.
 
+Diagrama (Mermaid)
+
+flowchart LR
+  A[Kali] -->|Escaneos / HTTP / DNS| S[Suricata IDS]
+  A -->|SSH Hydra| C[Cowrie Honeypot]
+  W[Windows 10 + Sysmon] -->|Eventos| GA[Wazuh Agent Win]
+
+  S -->|eve.json| AS[Wazuh Agent Suricata]
+  C -->|cowrie.json| AC[Wazuh Agent Cowrie]
+
+  subgraph Envío a Manager (1514/1515 TCP)
+    AS --> M[Wazuh Manager]
+    AC --> M
+    GA --> M
+  end
+
+  M --> K[Kibana / Wazuh Dashboards]
+
+Config clave por fuente (minimal)
+
+Suricata (agente Linux)
+
+```
+<localfile>
+  <log_format>json</log_format>
+  <location>/var/log/suricata/eve.json</location>
+</localfile>
+
+```
+Cowrie (agente Linux)
+
+```
+<localfile>
+  <log_format>json</log_format>
+  <location>/var/log/cowrie/cowrie.json</location>
+</localfile>
+
+```
+
+Windows 10 (agente Win)
+
+Activar Sysmon (config recomendada) y fuentes “Security”, “System”, “Application”.
+
+El agente ya envía canales de eventos por defecto (ajustable en ossec.conf de Windows).
+
+Verificación rápida (operativa)
+
+En cada agente
+
+```
+# Suricata
+sudo tail -f /var/ossec/logs/ossec.log | grep -E 'suricata|eve.json'
+
+# Cowrie
+sudo tail -f /var/ossec/logs/ossec.log | grep -i cowrie
+
+# Windows (PowerShell)
+Get-Content "C:\Program Files (x86)\ossec-agent\ossec.log" -Wait | Select-String Sysmon
+
+```
+
+En el Manager
+
+```
+# Ver agentes conectados
+sudo /var/ossec/bin/agent_control -lc
+
+# Ver alertas por fuente
+sudo grep -i suricata /var/ossec/logs/alerts/alerts.json | tail
+sudo grep -i cowrie   /var/ossec/logs/alerts/alerts.json | tail
+sudo grep -i sysmon   /var/ossec/logs/alerts/alerts.json | tail
+sudo grep -i rootcheck /var/ossec/logs/alerts/alerts.json | tail
+
+```
+
+Pruebas que disparan alertas (end-to-end)
+
+Suricata (IDS):
+
+```
+nmap -sS -T4 -p1-1000 <IP_suricata>
+curl -A "sqlmap" http://<IP_suricata>
+dig test.malwaredomain.com @<IP_suricata>
+
+```
+
+→ Verás firmas ET `SCAN`, `ET INFO`, posibles DNS anómalos.
+
+Cowrie (SSH):
+
+```
+hydra -l root -P /usr/share/wordlists/rockyou.txt ssh://<IP_cowrie>:2222
+```
+
+→ `cowrie.login.failed/success` y `cowrie.command.input`.
+
+Windows (Sysmon):
+
+Ejecutar `powershell.exe -enc ...` (genera EventID 1).
+
+Intentos de inicio fallidos (genera 4625).
+
+Rootcheck/FIM (Linux):
+
+Simular cambio en binario de sistema (o dejar que el escaneo programado alerte).
+
+Visto `Trojaned /bin/passwd` como evidencia.
+
+Errores comunes (y solución)
+
+Veo logs de `pam/sudo`, pero no de Suricata/Cowrie:
+
+Falta `<localfile>` del archivo JSON → añádelo y `systemctl restart wazuh-agent`.
+
+No aparecen alertas aunque hay tráfico:
+Suricata sin reglas/actualización → `sudo suricata -T -c /etc/suricata/suricata.yaml` y actualizar ET rules.
+
+Nada llega al Manager:
+Puertos 1514/1515 bloqueados o agente desconectado → `agent_control -lc`.
