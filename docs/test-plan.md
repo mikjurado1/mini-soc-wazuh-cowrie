@@ -319,6 +319,53 @@ Rootcheck (integridad de archivos en Linux)
 | R2 | Detección de anomalías en host | Escaneo de rootkits y binarios alterados (rootcheck programado) | Rootcheck | `Host-based anomaly detection event (rootcheck)` | 7 |
 
 
+## 📌 Lista de ataques simulados
+
+### 🔹 Escaneo Nmap
+- **Comando ejecutado:**
+```
+  nmap -sS -T4 -p1-1000 192.168.229.144
+```
+
+# Resultado esperado: 
+Suricata debe generar una alerta `ET SCAN Nmap Scripting Engine User-Agent Detected`.
+
+# Resultado obtenido: 
+Alerta visible en `alerts.json` y en el dashboard de Wazuh, con severidad 3.
+
+
+🔹 User-Agent sospechoso con curl
+Comando ejecutado:
+
+```
+curl -A "sqlmap" http://192.168.229.144
+```
+
+# Resultado esperado: 
+Suricata debe generar una alerta informativa (`ET INFO GNU/Linux APT User-Agent Outbound`).
+
+# Resultado obtenido: 
+Alertas recibidas en Wazuh con severidad 3, confirmando que se detecta tráfico con user-agents sospechosos.
+
+🔹 DNS tunneling simulado con dig
+Comando ejecutado:
+
+```
+dig test.malwaredomain.com @192.168.229.144
+```
+
+# Resultado esperado: 
+Suricata debe disparar una alerta `ET INFO Possible DNS Tunneling Attempt`.
+
+Resultado obtenido: Alertas de tipo DNS generadas en Suricata y recibidas en Wazuh.
+
+🔹 Rootcheck detectando binario modificado
+Simulación: Rootcheck ejecuta análisis de integridad sobre `/bin/passwd`.
+
+Resultado esperado: Generar alerta `Trojaned version of file '/bin/passwd' detected`.
+
+Resultado obtenido: Alerta con severidad 7 visible en Wazuh Dashboard, indicando detección de posible rootkit/binario alterado.
+
 
 
 
